@@ -1,0 +1,79 @@
+% Results & Validation
+
+\begin{center}
+	\textbf{\Large Simulation \& Field Trial Results}
+\end{center}
+
+\vspace{0.2em}
+
+\begin{minipage}{0.46\textwidth}
+	\textbf{Formation Control:}
+\begin{center}
+\includegraphics[width=0.85\linewidth]{../OCEANS-2025-great-lakes/figures/controller-birdeye-view.png}
+\captionof{figure}{\footnotesize Multi-AUV formation geometry}
+\end{center}
+
+	\textbf{Localization Performance:}
+\begin{center}
+\includegraphics[width=0.85\linewidth]{../OCEANS-2025-great-lakes/figures/trial_A_ekf_heading_comparison.png}
+\captionof{figure}{\footnotesize EKF with/without heading}
+\end{center}
+
+\begin{tcolorbox}[colback=waspgrey!10, colframe=waspgrey, boxrule=0.5pt]
+\footnotesize
+\textbf{Simulation Results:}
+\begin{itemize}[leftmargin=1em, itemsep=0.02em]
+    \item Mean error: 0.68 m RMSE
+    \item Formation error: $< 0.5$ m RMS
+    \item 95\% confidence: $< 1.5$ m
+    \item Turn success: 98\%
+    \item Comm. utilization: $< 0.8\%$
+    \item Scalable to 8+ followers
+\end{itemize}
+\end{tcolorbox}
+\end{minipage}
+\hfill
+\begin{minipage}{0.46\textwidth}
+	\textbf{Field Trial:}
+\begin{center}
+\includegraphics[width=0.5\linewidth]{../OCEANS-2025-great-lakes/figures/lolo_asko_2025.jpg}
+\captionof{figure}{\footnotesize LoLo AUV platform}
+\end{center}
+
+	\textbf{Acoustic Data:}
+\begin{center}
+\includegraphics[width=0.85\linewidth]{../OCEANS-2025-great-lakes/figures/acoustic_msmts_A.png}
+\captionof{figure}{\footnotesize Real ranging measurements}
+\end{center}
+
+\begin{tcolorbox}[colback=waspblue!10, colframe=waspblue, boxrule=0.5pt]
+\footnotesize
+\textbf{Field Trial Results:}
+\begin{itemize}[leftmargin=1em, itemsep=0.02em]
+    \item Location: Askö Station, Sweden
+    \item Duration: 4 hours continuous
+    \item Acoustic accuracy: $\pm 0.3$ m
+    \item Comm. success: 94\%
+    \item Processing: 10 Hz real-time
+    \item Weather: 1-2 m waves
+\end{itemize}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=wasppink!10, colframe=wasppink, boxrule=0.5pt]
+\footnotesize
+\textbf{vs. State-of-the-Art:}
+\begin{itemize}[leftmargin=1em, itemsep=0.03em]
+    \item \textbf{TUPER:} Low cost, 0.68m, scalable
+    \item \textbf{LBL:} High cost, 0.1-0.5m, limited
+    \item \textbf{USBL:} Med cost, 1-5m, medium
+    \item \textbf{Dead Reckoning:} Low cost, 10-100m
+\end{itemize}
+
+\textbf{Economic Impact:}
+\begin{itemize}[leftmargin=1em, itemsep=0.03em]
+    \item 90\% cost reduction vs. traditional
+    \item 4 hours vs. 2-4 weeks deployment
+    \item 2 operators vs. 8-15 crew
+\end{itemize}
+\end{tcolorbox}
+\end{minipage}

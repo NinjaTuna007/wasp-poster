@@ -1,0 +1,63 @@
+% Formation Setup
+
+\begin{center}
+\textbf{\large Optimal Formation Geometry}
+\end{center}
+
+\begin{center}
+    \begin{adjustbox}{width=0.9\columnwidth}
+    \begin{tikzpicture}
+
+        % two leader nodes
+        \node (L0) at (-5,0) {\includegraphics[width=1.3cm]{lolo_top.png}};
+        \node[below=0cm of L0] {\(\mathbf{L_0}\)}; % Label for L_0
+        
+        \node (L1) at (5,0) {\includegraphics[width=1.3cm]{lolo_top.png}};
+        \node[below=0cm of L1] {\(\mathbf{L_1}\)}; % Label for L_1
+            
+        % five followers symmetrically placed at 90° angles
+        \node (f1) at ({-2.5 * sqrt(3)},-2.5) {\includegraphics[width=0.3cm]{sam_top.png}};
+        \node[below=0cm of f1] {\(\mathbf{f_0}\)}; % Label for f_1
+        
+        \node (f2) at (-2.5,{-2.5 * sqrt(3)}) {\includegraphics[width=0.3cm]{sam_top.png}};
+        \node[below=0cm of f2] {\(\mathbf{f_1}\)}; % Label for f_2
+        
+        \node (f3) at (0,-5) {\includegraphics[width=0.3cm]{sam_top.png}};
+        \node[below=0cm of f3] {\(\mathbf{f_2}\)}; % Label for f_3
+        
+        \node (f4) at (2.5,{-2.5 * sqrt(3)}) {\includegraphics[width=0.3cm]{sam_top.png}};
+        \node[below=0cm of f4] {\(\mathbf{f_3}\)}; % Label for f_4
+        
+        \node (f5) at ({2.5 * sqrt(3)},-2.5) {\includegraphics[width=0.3cm]{sam_top.png}};
+        \node[below=0cm of f5] {\(\mathbf{f_4}\)}; % Label for f_5
+
+        % draw lines between leaders and followers
+        \draw[dotted, thin] (L0.center) -- (f1.center);
+        \draw[dotted, thin] (L1.center) -- (f1.center);
+        \pic [draw, angle radius=5mm, angle eccentricity=1.5, "$90^\circ$", anchor=center, color=red] {right angle = L1--f1--L0}; 
+
+        \draw[dotted, thin] (L0.center) -- (f2.center);
+        \draw[dotted, thin] (L1.center) -- (f2.center);
+
+        \draw[dotted, thin] (L0.center) -- (f3.center);
+        \draw[dotted, thin] (L1.center) -- (f3.center);
+
+        \draw[dotted, thin] (L0.center) -- (f4.center);
+        \draw[dotted, thin] (L1.center) -- (f4.center);
+
+        \draw[dotted, thin] (L0.center) -- (f5.center);
+        \draw[dotted, thin] (L1.center) -- (f5.center);
+
+    \end{tikzpicture}
+    \end{adjustbox}
+\end{center}
+
+\begin{tcolorbox}[colback=waspgrey!10, colframe=waspgrey, boxrule=0.5pt]
+\textbf{Why Semi-Circle?}
+\begin{itemize}[leftmargin=1em, itemsep=0.05em]
+    \item Optimal GDOP geometry
+    \item 90° constraint for precision
+    \item Scalable to 8+ followers
+    \item Robust to leader loss
+\end{itemize}
+\end{tcolorbox}

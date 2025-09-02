@@ -1,0 +1,61 @@
+% Simulation Results
+
+\begin{tcolorbox}[colback=waspblue!15, colframe=waspblue, boxrule=1pt, rounded corners]
+\large \textbf{Simulation Validation}
+\end{tcolorbox}
+
+\vspace{0.3em}
+
+\textbf{Formation Trajectory:}
+
+\begin{center}
+\includegraphics[width=0.95\linewidth]{../OCEANS-2025-great-lakes/figures/trajectories_A.png}
+\captionof{figure}{\small Simulated mission showing formation maintenance during complex maneuvers}
+\end{center}
+
+\vspace{0.3em}
+
+\textbf{Localization Accuracy:}
+
+\begin{center}
+\includegraphics[width=0.9\linewidth]{../OCEANS-2025-great-lakes/figures/average_ekf_errors.png}
+\captionof{figure}{\small EKF localization errors across different scenarios}
+\end{center}
+
+\vspace{0.3em}
+
+\textbf{Performance Metrics:}
+
+\begin{tcolorbox}[colback=waspgrey!10, colframe=waspgrey, boxrule=0.5pt]
+\textbf{Localization Accuracy:}
+\begin{itemize}[leftmargin=1em, itemsep=0.03em]
+    \item Mean error: 0.68 m (RMSE)
+    \item 95\% confidence: $< 1.5$ m
+    \item Steady-state convergence: $< 30$ s
+\end{itemize}
+
+\textbf{Formation Control:}
+\begin{itemize}[leftmargin=1em, itemsep=0.03em]
+    \item Formation error: $< 0.5$ m RMS
+    \item Turn coordination: 98\% success rate
+    \item Communication utilization: $< 0.8\%$
+\end{itemize}
+\end{tcolorbox}
+
+\vspace{0.3em}
+
+\textbf{Scalability Analysis:}
+
+\begin{center}
+\includegraphics[width=0.85\linewidth]{../OCEANS-2025-great-lakes/figures/EKF variance vs pos.png}
+\captionof{figure}{\small Localization variance vs. position in formation}
+\end{center}
+
+\vspace{0.2em}
+
+Tested with 1-8 followers:
+\begin{itemize}[leftmargin=1em, itemsep=0.05em]
+    \item Linear scaling of computational load
+    \item Minimal communication overhead increase
+    \item Maintained formation accuracy
+\end{itemize}

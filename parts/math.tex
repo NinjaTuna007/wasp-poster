@@ -1,0 +1,76 @@
+% Mathematical Framework
+
+\begin{tcolorbox}[colback=waspblue!15, colframe=waspblue, boxrule=1pt, rounded corners]
+\large \textbf{State Estimation Framework}
+\end{tcolorbox}
+
+\vspace{0.3em}
+
+\textbf{State Vector Definition:}
+
+\begin{tcolorbox}[colback=waspgrey!10, colframe=waspgrey, boxrule=0.5pt]
+$$\mathbf{x} = \begin{bmatrix} 
+\mathbf{x}_{l1} \\ \mathbf{x}_{l2} \\ \mathbf{x}_f 
+\end{bmatrix} = \begin{bmatrix}
+x_{l1}, y_{l1}, v_{xl1}, v_{yl1} \\
+x_{l2}, y_{l2}, v_{xl2}, v_{yl2} \\
+x_f, y_f, v_{xf}, v_{yf}
+\end{bmatrix}^T$$
+\end{tcolorbox}
+
+where $(x,y)$ are UTM coordinates and $(v_x, v_y)$ are velocities.
+
+\vspace{0.3em}
+
+\textbf{Motion Model:}
+
+Constant velocity assumption with white noise:
+$$\mathbf{x}_{k} = \mathbf{F} \mathbf{x}_{k-1} + \mathbf{w}_{k-1}$$
+
+where $\mathbf{F} = \text{diag}(\mathbf{F}_{l1}, \mathbf{F}_{l2}, \mathbf{F}_f)$ and
+
+$$\mathbf{F}_{agent} = \begin{bmatrix}
+1 & 0 & \Delta t & 0 \\
+0 & 1 & 0 & \Delta t \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1
+\end{bmatrix}$$
+
+\vspace{0.3em}
+
+\textbf{Measurement Model:}
+
+OWTT acoustic ranging measurements:
+$$z_k^{(i)} = \sqrt{(x_f - x_{li})^2 + (y_f - y_{li})^2} + v_k^{(i)}$$
+
+where $v_k^{(i)} \sim \mathcal{N}(0, \sigma_r^2)$ is measurement noise.
+
+\vspace{0.3em}
+
+\textbf{Extended Kalman Filter:}
+
+\textbf{Prediction:}
+\begin{align}
+\hat{\mathbf{x}}_{k|k-1} &= \mathbf{F} \hat{\mathbf{x}}_{k-1|k-1} \\
+\mathbf{P}_{k|k-1} &= \mathbf{F} \mathbf{P}_{k-1|k-1} \mathbf{F}^T + \mathbf{Q}
+\end{align}
+
+\textbf{Update:}
+\begin{align}
+\mathbf{K}_k &= \mathbf{P}_{k|k-1} \mathbf{H}_k^T (\mathbf{H}_k \mathbf{P}_{k|k-1} \mathbf{H}_k^T + \mathbf{R})^{-1} \\
+\hat{\mathbf{x}}_{k|k} &= \hat{\mathbf{x}}_{k|k-1} + \mathbf{K}_k (\mathbf{z}_k - h(\hat{\mathbf{x}}_{k|k-1})) \\
+\mathbf{P}_{k|k} &= (\mathbf{I} - \mathbf{K}_k \mathbf{H}_k) \mathbf{P}_{k|k-1}
+\end{align}
+
+where $\mathbf{H}_k$ is the Jacobian of $h(\cdot)$.
+
+\vspace{0.3em}
+
+\textbf{Observability Analysis:}
+
+The system is observable when:
+\begin{itemize}[leftmargin=1em, itemsep=0.05em]
+    \item At least 2 leader range measurements available
+    \item Leaders are non-collinear with follower
+    \item Geometric Dilution of Precision (GDOP) $< 5$
+\end{itemize}

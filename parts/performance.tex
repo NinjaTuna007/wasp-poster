@@ -1,0 +1,81 @@
+% Performance Analysis
+
+\begin{tcolorbox}[colback=waspblue!15, colframe=waspblue, boxrule=1pt, rounded corners]
+\large \textbf{Comprehensive Performance Analysis}
+\end{tcolorbox}
+
+\vspace{0.3em}
+
+\textbf{Filter Performance Comparison:}
+
+\begin{center}
+\includegraphics[width=0.48\linewidth]{../OCEANS-2025-great-lakes/figures/trial_A_pf_heading_comparison.png}
+\includegraphics[width=0.48\linewidth]{../OCEANS-2025-great-lakes/figures/trial_A_ukf_heading_comparison.png}
+\captionof{figure}{\small Particle Filter (left) vs. Unscented Kalman Filter (right) performance}
+\end{center}
+
+\vspace{0.3em}
+
+\textbf{Computational Performance:}
+
+\begin{tcolorbox}[colback=waspgrey!10, colframe=waspgrey, boxrule=0.5pt]
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Filter Type} & \textbf{CPU Usage} & \textbf{Memory} & \textbf{Accuracy (RMSE)} \\
+\hline
+EKF & 2.3\% & 1.2 MB & 0.68 m \\
+UKF & 8.7\% & 3.1 MB & 0.71 m \\
+PF (100 particles) & 15.4\% & 8.9 MB & 0.74 m \\
+PF (500 particles) & 42.1\% & 21.3 MB & 0.69 m \\
+\hline
+\end{tabular}
+\end{tcolorbox}
+
+\vspace{0.3em}
+
+\textbf{Error Analysis:}
+
+\begin{center}
+\includegraphics[width=0.9\linewidth]{../OCEANS-2025-great-lakes/figures/ekf_error_trial_A.png}
+\captionof{figure}{\small Detailed EKF error analysis showing convergence characteristics}
+\end{center}
+
+\vspace{0.3em}
+
+\textbf{Environmental Robustness:}
+
+\begin{itemize}[leftmargin=1em, itemsep=0.1em]
+    \item \textbf{Acoustic Noise:} Tested up to SNR = 10 dB
+    \item \textbf{Multipath Effects:} Robust in shallow water (10-30 m depth)
+    \item \textbf{Clock Drift:} Compensated up to 10 ppm drift rates
+    \item \textbf{Communication Loss:} Graceful degradation with 20\% packet loss
+    \item \textbf{Formation Scaling:} Linear computational complexity up to 8 followers
+\end{itemize}
+
+\vspace{0.3em}
+
+\textbf{Comparison with State-of-the-Art:}
+
+\begin{tcolorbox}[colback=wasppink!10, colframe=wasppink, boxrule=0.5pt]
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Method} & \textbf{Cost} & \textbf{Accuracy} & \textbf{Scalability} \\
+\hline
+TUPER Framework & Low & 0.68 m & High \\
+LBL Systems & High & 0.1-0.5 m & Low \\
+USBL Systems & Medium & 1-5 m & Medium \\
+Dead Reckoning & Low & 10-100 m & High \\
+\hline
+\end{tabular}
+\end{tcolorbox}
+
+\vspace{0.3em}
+
+\textbf{Economic Impact Analysis:}
+
+\begin{itemize}[leftmargin=1em, itemsep=0.1em]
+    \item \textbf{Cost Reduction:} 90\% vs. traditional survey vessels
+    \item \textbf{Deployment Time:} 4 hours vs. 2-4 weeks
+    \item \textbf{Personnel Requirements:} 2 operators vs. 8-15 crew
+    \item \textbf{Operational Range:} 24/7 capability in most weather conditions
+\end{itemize}

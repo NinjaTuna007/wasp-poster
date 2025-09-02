@@ -1,0 +1,78 @@
+% Formation Control
+
+\begin{tcolorbox}[colback=waspblue!15, colframe=waspblue, boxrule=1pt, rounded corners]
+\large \textbf{Formation Control Strategy}
+\end{tcolorbox}
+
+\vspace{0.3em}
+
+\textbf{Semi-Circular Arc Formation:}
+
+\begin{center}
+\includegraphics[width=0.9\linewidth]{../OCEANS-2025-great-lakes/figures/turn_signalling_big.png}
+\captionof{figure}{\small Formation geometry during coordinated turns}
+\end{center}
+
+\vspace{0.3em}
+
+\textbf{Geometric Constraints:}
+
+For follower $i$, the desired position is:
+$$\mathbf{p}_{d,i} = \mathbf{p}_{center} + R \begin{bmatrix} \cos(\theta_i) \\ \sin(\theta_i) \end{bmatrix}$$
+
+where:
+\begin{itemize}[leftmargin=1em, itemsep=0.05em]
+    \item $\mathbf{p}_{center} = \frac{\mathbf{p}_{l1} + \mathbf{p}_{l2}}{2}$ (formation center)
+    \item $R = \frac{||\mathbf{p}_{l1} - \mathbf{p}_{l2}||}{2}$ (formation radius)
+    \item $\theta_i = \frac{i \pi}{N+1}$ (angular position for $N$ followers)
+\end{itemize}
+
+\vspace{0.3em}
+
+\textbf{Control Law:}
+
+Position-based control with velocity feedforward:
+$$\mathbf{u}_i = K_p (\mathbf{p}_{d,i} - \hat{\mathbf{p}}_i) + K_d (\mathbf{v}_{d,i} - \hat{\mathbf{v}}_i)$$
+
+where $\mathbf{v}_{d,i} = \frac{d\mathbf{p}_{d,i}}{dt}$ is the desired velocity.
+
+\vspace{0.3em}
+
+\textbf{Behavior Tree Architecture:}
+
+\begin{tcolorbox}[colback=waspgrey!10, colframe=waspgrey, boxrule=0.5pt]
+\textbf{Root Node:} Mission Execution
+\begin{itemize}[leftmargin=1em, itemsep=0.03em]
+    \item \textbf{Sequence:} Safety Checks
+    \item \textbf{Parallel:} Localization \& Control
+    \item \textbf{Selector:} Formation Behaviors
+    \begin{itemize}[leftmargin=1em, itemsep=0.02em]
+        \item Formation Acquisition
+        \item Formation Maintenance
+        \item Emergency Surfacing
+    \end{itemize}
+\end{itemize}
+\end{tcolorbox}
+
+\vspace{0.3em}
+
+\textbf{Formation Benefits:}
+
+\begin{itemize}[leftmargin=1em, itemsep=0.1em]
+    \item \textbf{Optimal GDOP:} Minimizes localization uncertainty
+    \item \textbf{Coverage Efficiency:} Uniform sensor spacing
+    \item \textbf{Scalability:} Supports arbitrary number of followers
+    \item \textbf{Fault Tolerance:} Graceful degradation with agent loss
+    \item \textbf{Communication Efficiency:} Minimizes acoustic interference
+\end{itemize}
+
+\vspace{0.3em}
+
+\textbf{Turn Coordination:}
+
+Leaders signal turn intentions via acoustic broadcasts:
+\begin{itemize}[leftmargin=1em, itemsep=0.05em]
+    \item Turn direction and magnitude
+    \item Coordination timestamp
+    \item Formation adjustment parameters
+\end{itemize}

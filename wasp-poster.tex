@@ -14,7 +14,7 @@
 % Enjoy!
 % Per Skarin, 2021
 
-\documentclass[a0paper,portrait]{baposter}
+\documentclass[a0paper,landscape]{baposter}
 \usepackage{lipsum}  
 \usepackage{relsize}	% For \smaller
 \usepackage{url}	% For \url
@@ -26,19 +26,22 @@
 \usepackage{enumitem}
 \usepackage{tcolorbox}
 \usepackage{mathtools}
+\usepackage{tikz}
+\usepackage{adjustbox}
+\usetikzlibrary{calc, angles, quotes, arrows.meta, shapes.geometric, positioning}
 
 % PATHS
-\graphicspath{{template-images/}{content-images/}}
+\graphicspath{{template-images/}{content-images/}{../OCEANS-2025-great-lakes/}}
 
 % FONTS AND COLORS
 \renewcommand{\familydefault}{\sfdefault}
 \newcommand{\mytitlefont}{\fontfamily{\familydefault}\selectfont }
 \newcommand{\mytextfont}{\fontfamily{\familydefault}\selectfont }
 % Comment the four lines below to skip WASP fonts
-\usepackage{MinionPro}
-\usepackage{MyriadPro}
-\renewcommand{\mytitlefont}{\fontfamily{MyriadPro-LF}\selectfont }
-\renewcommand{\mytextfont}{\fontfamily{MinionPro-LF}\selectfont }
+% \usepackage{MinionPro}
+% \usepackage{MyriadPro}
+% \renewcommand{\mytitlefont}{\fontfamily{MyriadPro-LF}\selectfont }
+% \renewcommand{\mytextfont}{\fontfamily{MinionPro-LF}\selectfont }
 
 \definecolor{wasppink}{RGB}{203,166,169} 
 \definecolor{waspgrey}{RGB}{88,89,91}
@@ -77,7 +80,7 @@
  % eyecatcher=false,
  % Column spacing
  colspacing=1em,
- columns=2,
+ columns=4,
  boxpadding=.5cm,
  % Color style
  headerColorOne=wasp_banner_light,
@@ -91,18 +94,34 @@
  headershade=plain,
  background=none,
  % bgColorOne=cyan!10!white,
- headerheight=0.12\textheight}
+ headerheight=0.2\textheight}
 %%% Eye Cacther %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 {
 	Eye Catcher, empty if option eyecatcher=false - unused
 }
 %%%% Title %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 {
-	\textcolor{wasp_text}{\mytitlefont \huge \thetitle}
+	\begin{minipage}[t]{0.1\textwidth}
+		\raggedright
+		\vspace{0.5cm}
+		\theuniversitylogo
+	\end{minipage}
+	\hfill
+	\begin{minipage}[t]{0.75\textwidth}
+		\centering
+		\vspace{1cm}
+		\textcolor{wasp_text}{\mytitlefont \huge \thetitle}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[t]{0.1\textwidth}
+		\raggedleft
+		\vspace{0.5cm}
+		\thecompanylogo
+	\end{minipage}
 }
 %%% Authors %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 {
-  \vspace{0.5em}
+  % \vspace{0.5em}
   \textcolor{wasp_text}{\Large \theauthor\\
 	\large \thedepinfo\\
 	Supervisors: \thesupervisors\\
@@ -110,54 +129,99 @@
 }
 %%% Logo %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 {
-  \begin{minipage}{8cm}
-   \centering
-   \vspace{0.5cm}
-	    \theuniversitylogo\vspace{0.25cm}\par
-		  \thecompanylogo
-  \end{minipage}
+  % Logos are now in the title section above
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% Now define the boxes that make up the poster
-%%%---------------------------------------------------------------------------
-%%% Each box has a name and can be placed absolutely or relatively.
-%%% The only inconvenience is that you can only specify a relative position 
-%%% towards an already declared box. So if you have a box attached to the 
-%%% bottom, one to the top and a third one which should be inbetween, you 
-%%% have to specify the top and bottom boxes before you specify the middle 
-%%% box.
+%%% Now define the boxes that make up the poster - 4 Column Layout
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  \headerbox{\mytitlefont Motivation \& Research Goals}{name=description,column=0,row=0,span=2}{
+% Column 1: Problem, Motivation, Formation Setup, Mission Phases
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \headerbox{\mytitlefont TUPER Vision}{name=problem,column=0,row=0}{
   \mytextfont
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  \input{parts/motivation}
+  \input{parts/problem}
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  \headerbox{\mytitlefont Methods}{name=motivation,column=0,row=0,span=1, below=description}{
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \headerbox{\mytitlefont Formation Geometry}{name=formation,column=0,below=problem}{
   \mytextfont
-  \input{parts/methods}
+  \input{parts/formationsetup}
 }
 
+%   \headerbox{\mytitlefont Mission Phases}{name=phases,column=0,below=formation}{
+%   \mytextfont
+%   \input{parts/phases}
+% }
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  \headerbox{\mytitlefont Selected Results}{name=goal,column=1,row=0,span=1, below=description }{
+% Column 2: Localization Method, Formation Control, Simulation Results
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \headerbox{\mytitlefont Acoustic Localization}{name=localization,column=1,row=0}{
+  \mytextfont
+  \input{parts/localization}
+}
+
+  \headerbox{\mytitlefont Formation Control}{name=control,column=1,below=localization}{
+  \mytextfont
+  \input{parts/control}
+}
+
+%   \headerbox{\mytitlefont Simulation Results}{name=simresults,column=1,below=control}{
+%   \mytextfont
+%   \input{parts/simresults}
+% }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Column 3: Real Experiments and Results
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \headerbox{\mytitlefont Turn Signaling}{name=turnsignaling,column=2,row=0}{
+  \mytextfont
+  \input{parts/simresults}
+}
+
+
+\headerbox{\mytitlefont Drone Footage @Askö}{name=experiments,column=2,below=turnsignaling}{
+  \mytextfont
+  \input{parts/experiments}
+}
+
+
+% \headerbox{\mytitlefont Experimental Results}{name=expresults,column=2,below=experiments}{
+%   \mytextfont
+%   \input{parts/expresults}
+% }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Column 4: Discussion, Future Work, References
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \headerbox{\mytitlefont Data from Field Trial}{name=data,column=3,row=0}{
+  \mytextfont
+  \input{parts/data}
+}
+
+  \headerbox{\mytitlefont Results of Localization in Field Trial}{name=results,column=3,below=data}{
   \mytextfont
   \input{parts/results}
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  \headerbox{References}{headerColorOne=wasp_banner_dark, borderColor=wasp_banner_dark, name=results,column=0,row=0,span=1, below=motivation }{
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	\mytextfont
+
+%   \headerbox{\mytitlefont Discussion \& Conclusions}{name=discussion,column=3,below=results}{
+%   \mytextfont
+%   \input{parts/discussion}
+% }
+
+%   \headerbox{\mytitlefont Future Work}{name=future,column=3,below=discussion}{
+%   \mytextfont
+%   \input{parts/future}
+% }
+
+  \headerbox{References}{headerColorOne=wasp_banner_dark, borderColor=wasp_banner_dark, name=references,column=3,below=results, above=bottom}{
+  \mytextfont
   \input{parts/references}
 }
 
-\headerbox{}{name=foottext, column=0, span=2, above=bottom, textborder=none,headerborder=none,boxheaderheight=0pt,boxColorOne=wasp_banner_dark}{\hfill \includegraphics[height=1cm]{waspwhite}}
+\headerbox{}{name=foottext, column=0, span=4, above=bottom, textborder=none,headerborder=none,boxheaderheight=0pt,boxColorOne=wasp_banner_dark}{\hfill \includegraphics[height=0.01\textheight]{waspwhite}}
 
 
 \end{poster}

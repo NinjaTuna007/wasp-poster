@@ -1,0 +1,26 @@
+% Real Experiments
+
+% \begin{center}
+% 	\textbf{\large Field Trials @ Askö Station}
+% \end{center}
+
+\begin{center}
+% \includegraphics[width=0.8\linewidth]{figures/drone_asko.png}
+\begin{adjustbox}{width=0.8\columnwidth}
+    \begin{tikzpicture}
+        \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=\textwidth]{figures/drone_asko.png}};
+        \begin{scope}[x={(image.south east)},y={(image.north west)}]
+            % Leader 1 - Top right (orange-ish)
+            \node[fill={rgb,255:red,255;green,127;blue,14}, text=white, rounded corners=2pt, font=\bfseries\Large] 
+                    at (0.84, 0.85) {Leader 1};
+            % Leader 2 - Bottom center (purple-ish)
+            \node[fill={rgb,255:red,148;green,103;blue,189}, text=white, rounded corners=2pt, font=\bfseries\Large] 
+                    at (0.3, 0.15) {Leader 2};
+            % Follower - Center left (blue)
+            \node[fill=blue!70, text=white, rounded corners=2pt, font=\bfseries\Large] 
+                    at (0.15, 0.30) {Follower};
+        \end{scope}
+    \end{tikzpicture}
+\end{adjustbox}
+\captionof{figure}{\footnotesize Field Deployment at Askö}
+\end{center}
