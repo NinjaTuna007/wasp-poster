@@ -33,6 +33,9 @@
 % PATHS
 \graphicspath{{template-images/}{content-images/}{../OCEANS-2025-great-lakes/}}
 
+% BIBLIOGRAPHY AND CITATIONS
+\usepackage{cite}
+
 % FONTS AND COLORS
 \renewcommand{\familydefault}{\sfdefault}
 \newcommand{\mytitlefont}{\fontfamily{\familydefault}\selectfont }
@@ -175,13 +178,13 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Column 3: Real Experiments and Results
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  \headerbox{\mytitlefont Turn Signaling}{name=turnsignaling,column=2,row=0}{
+  \headerbox{\mytitlefont Turn Signaling and Simulation Results}{name=turnsignaling,column=2,row=0}{
   \mytextfont
   \input{parts/simresults}
 }
 
 
-\headerbox{\mytitlefont Drone Footage @Askö}{name=experiments,column=2,below=turnsignaling}{
+\headerbox{\mytitlefont Areal View of Deployment at Askö}{name=experiments,column=2,below=turnsignaling}{
   \mytextfont
   \input{parts/experiments}
 }
@@ -218,11 +221,13 @@
 
   \headerbox{References}{headerColorOne=wasp_banner_dark, borderColor=wasp_banner_dark, name=references,column=3,below=results, above=bottom}{
   \mytextfont
+  \footnotesize
+  \bibliographystyle{IEEEtran}
+  \bibliography{poster_refs}
   \input{parts/references}
 }
 
 \headerbox{}{name=foottext, column=0, span=4, above=bottom, textborder=none,headerborder=none,boxheaderheight=0pt,boxColorOne=wasp_banner_dark}{\hfill \includegraphics[height=0.01\textheight]{waspwhite}}
-
 
 \end{poster}
 \end{document}

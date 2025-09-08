@@ -2,10 +2,10 @@
 
 % Based on the estimated leader positions on each individual follower, target positions for the followers are computed for each follower. 
 
-The control strategy is orchestrated through a behavior tree framework, allowing for modular and adaptive control. %The main strategy is as follows:
+The control strategy is orchestrated through a behavior tree framework, allowing for modular and adaptive control. The hybrid approach combines:
 
 \begin{itemize}
-    \item While cross-track deviation is low, focus on keeping up (fast and steady)
-    \item When cross-track deviation increases, prioritize steering control (slow and furious)
-    \item If turning, temporarily shift the setpoint against the direction of the turn
+    \item \textbf{Speed Control:} When cross-track deviation is low, focus on maintaining formation speed
+    \item \textbf{Steering Control:} When cross-track deviation increases, prioritize lateral correction
+    % \item \textbf{Turn Adaptation:} During leader turns, temporarily shift setpoint to maintain formation geometry
 \end{itemize}

@@ -6,9 +6,9 @@
 
 On each follower vehicle, the state $\mathbf{x}$ consists of the 2D positions and velocities of the follower and both leaders. 
 
-Leaders take turn broadcasting their positions using time-synchronized messages, allowing all followers to simultaneously measure ranges from the leaders using OWTT ranging. These measured ranges along with reported leader positions are used to update the followers' state estimates.
+Leaders take turns broadcasting their positions using time-synchronized messages, allowing all followers to simultaneously measure ranges from the leaders using OWTT ranging~\cite{eustice2011synchronous,simetti2021wimust}. These measured ranges along with reported leader positions are used to update the followers' state estimates.
 
 \begin{center}
-\includegraphics[width=0.85\columnwidth]{figures/acoustic_filter_error_zones.png}
+\includegraphics[width=\columnwidth]{figures/acoustic_filter_error_zones.png}
 \captionof{figure}{\footnotesize Error Zones when using our Acoustic EKF}
 \end{center}
